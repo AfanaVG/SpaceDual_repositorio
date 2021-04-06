@@ -21,7 +21,7 @@ public class Proyectil : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "enemigo" || collision.gameObject.tag == "plataforma")
+        if (collision.gameObject.tag == "Enemigo" || collision.gameObject.tag == "plataforma")
         {
             Destroy(gameObject);
 
