@@ -64,14 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\JumboRojo.cs" />
     <Compile Include="Assets\Scripts\DualController.cs" />
-    <Compile Include="Assets\Scripts\JumboAzul.cs" />
+    <Compile Include="Assets\Scripts\Jumbo.cs" />
     <Compile Include="Assets\Scripts\Proyectil.cs" />
-    <Compile Include="Assets\Scripts\StandAzul.cs" />
-    <Compile Include="Assets\Scripts\StandRojo.cs" />
-    <Compile Include="Assets\Scripts\WormAzul.cs" />
-    <Compile Include="Assets\Scripts\WormRojo.cs" />
+    <Compile Include="Assets\Scripts\Stand.cs" />
+    <Compile Include="Assets\Scripts\Worm.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
