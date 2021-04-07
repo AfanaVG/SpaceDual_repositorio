@@ -7,6 +7,8 @@ TagManager:
   - ProyectilAzul
   - ProyectilRojo
   - Enemigo
+  - Bala
+  - Dual
   layers:
   - Default
   - TransparentFX

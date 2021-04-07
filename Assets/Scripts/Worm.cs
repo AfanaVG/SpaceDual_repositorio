@@ -5,7 +5,7 @@ using UnityEngine;
 public class Worm : MonoBehaviour
 {
     public string color = "";
-    public float velocidad = 5f;
+    public float velocidad = 1f;
     // Start is called before the first frame update
     void Start()
     {

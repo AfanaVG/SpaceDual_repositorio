@@ -69,4 +69,15 @@ public class DualController : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         puedeDisparar = true;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Enemigo") || collision.gameObject.tag.Equals("Bala"))
+        {
+            
+
+            gameObject.GetComponent<Animator>().SetTrigger("Tocado");
+        }
+    }
+
 }
