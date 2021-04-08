@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Worm : MonoBehaviour
 {
-    public string color = "";
-    public float velocidad = 1f;
+    //Objeto Worm que corresponde a un enemigo
+
+    public string color = ""; //Indica el color del enemigo; Valores aceptado : rojo | azul
+    public float velocidad = 1f; //Velocidad de la nave
+    public int puntuacion = 0; //Puntuacion que dara el enemigo al ser destruido
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,19 +27,22 @@ public class Worm : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        //Dependiendo del proyectil que impacte la nave saldra ilesa o sera destruida
 
         if (collision.gameObject.tag == "ProyectilRojo" && color.Equals("rojo"))
         {
-            gameObject.GetComponent<Animator>().SetTrigger("Tocado");
-
-            Destroy(gameObject, 0.2f);
+            Golpeado();
         }
         if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
         {
-            gameObject.GetComponent<Animator>().SetTrigger("Tocado");
-
-            Destroy(gameObject, 0.2f);
+            Golpeado();
         }
+    }
+
+    private void Golpeado()
+    {
+        gameObject.GetComponent<Animator>().SetTrigger("Tocado");
+        GameController.Puntuacion += puntuacion;
+        Destroy(gameObject, 0.2f);
     }
 }

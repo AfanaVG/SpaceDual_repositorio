@@ -150,6 +150,7 @@ MonoBehaviour:
   velocidad: 1
   balaL: {fileID: 190974312083082495, guid: c09a20b5913e843429fe3cf33ece7c66, type: 3}
   balaR: {fileID: 3954670104147912263, guid: 962e17db35f68bb449d988db18b78beb, type: 3}
+  puntuacion: 500
 --- !u!1 &8339001517900131291
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bala.cs" />
     <Compile Include="Assets\Scripts\DualController.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Jumbo.cs" />
     <Compile Include="Assets\Scripts\Proyectil.cs" />
     <Compile Include="Assets\Scripts\Stand.cs" />

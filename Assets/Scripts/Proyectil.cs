@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class Proyectil : MonoBehaviour
 {
-    private Rigidbody2D MyRb;
-    private float velocidad = 10f;
+    
+    private float velocidad = 10f; //Velocidad del disparo
     // Start is called before the first frame update
     void Start()
     {
-        MyRb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        MyRb.velocity = transform.up * velocidad;
-        Destroy(gameObject, 5f);
+        Movimiento(); // Metodo que controla el movimiento del proyectil
+
+        Destroy(gameObject, 5f); //Despues de 5s la bala desaparecera para evitar sobrecargar el sistema
+    }
+
+    private void Movimiento()
+    {
+        GetComponent<Rigidbody2D>().velocity = transform.up * velocidad;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemigo" || collision.gameObject.tag == "plataforma")
+        //Si el proyectil impacta contra un enemigo o contra un limite de pantalla la desaparecera
+        if (collision.gameObject.tag == "Enemigo" || collision.gameObject.tag == "Limite")
         {
             Destroy(gameObject);
 

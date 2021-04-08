@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Jumbo : MonoBehaviour
 {
-    public string color = "";
-    public Transform FirePointL; //Posicion de la fuente de disparo
-    public Transform FirePointR; //Posicion de la fuente de disparo
-    public float velocidad = 1f;
-    public GameObject balaL; //Objeto proyectil que usaremos para crear los proyectiles
-    public GameObject balaR; //Objeto proyectil que usaremos para crear los proyectiles
-    private bool puedeDisparar = true;
+    //Objeto Jumbo que corresponde a un enemigo
+
+    public string color = ""; //Indica el color del enemigo; Valores aceptado : rojo | azul
+    public Transform FirePointL; //Posicion de la fuente de disparo izquierda
+    public Transform FirePointR; //Posicion de la fuente de disparo derecha
+    public float velocidad = 1f; //Velocidad de la nave
+    public GameObject balaL; //Objeto proyectil que usaremos para crear los proyectiles izquierdos
+    public GameObject balaR; //Objeto proyectil que usaremos para crear los proyectiles derechos
+    private bool puedeDisparar = true; //Booleano para crear el espacio de tiempo entre disparos
+    public int puntuacion=0; //Puntuacion que dara el enemigo al ser destruido
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +26,24 @@ public class Jumbo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Movimiento(); //Controlara el movimiento de la nave
+        Disparo(); //Controla el disparo de la nave
+
+
+    }
+
+    private void Movimiento()
+    {
         gameObject.transform.Translate(0, -velocidad * Time.deltaTime, 0);
-        if (puedeDisparar)
+    }
+
+    private void Disparo()
+    {
+        if (puedeDisparar)//Disparara si a pasado el tiempo suficiente
         {
             StartCoroutine("Disparar");
         }
-        
     }
 
 
@@ -35,19 +52,23 @@ public class Jumbo : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        //Dependiendo del proyectil que impacte la nave saldra ilesa o sera destruida
 
         if (collision.gameObject.tag == "ProyectilRojo" && color.Equals("rojo"))
         {
-            gameObject.GetComponent<Animator>().SetTrigger("Tocado");
-
-            Destroy(gameObject, 0.2f);
+            Golpeado();
         }
         if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
         {
-            gameObject.GetComponent<Animator>().SetTrigger("Tocado");
-
-            Destroy(gameObject, 0.2f);
+            Golpeado();
         }
+    }
+
+    private void Golpeado()
+    {
+        gameObject.GetComponent<Animator>().SetTrigger("Tocado");
+        GameController.Puntuacion += puntuacion;
+        Destroy(gameObject, 0.2f);
     }
 
     IEnumerator Disparar()

@@ -144,3 +144,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: azul
   velocidad: 1
+  puntuacion: 58
