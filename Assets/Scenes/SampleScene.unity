@@ -471,7 +471,7 @@ MonoBehaviour:
   - {fileID: 6066467322920657950, guid: 108e30142bad7b34299928b8d69c5618, type: 3}
   velocidad: 8
   FirePoint: {fileID: 2080226878}
-  restaPuntos: 10
+  restaPuntos: 200
 --- !u!61 &685672690
 BoxCollider2D:
   m_ObjectHideFlags: 0
