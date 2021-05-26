@@ -55,10 +55,11 @@ public class DualController : MonoBehaviour
             Instantiate(proyectiles[proyectil_seleccionado], FirePoint.position, FirePoint.rotation);
             StartCoroutine("Esperar");
         }
+       
 
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-
+            
             if (proyectil_seleccionado != proyectiles.Length - 1)
             {
                 proyectil_seleccionado++;
@@ -66,6 +67,14 @@ public class DualController : MonoBehaviour
             else
             {
                 proyectil_seleccionado = 0;
+            }
+            if (proyectil_seleccionado == 1)
+            {
+                GameController.TipoProyectil = "ROJO";
+            }
+            else
+            {
+                GameController.TipoProyectil = "AZUL";
             }
 
         }
