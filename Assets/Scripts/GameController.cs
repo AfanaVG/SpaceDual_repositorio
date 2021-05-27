@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
     public static string TipoProyectil = "AZUL";
     public string NombrePuntuacion = "PUNTOS"; //Cadena que aparecera en pantalla referente a la puntuacion
     public string NombreProyectil = "PROYECTIL";
-    public string Nombre = "PROYECTIL";
 
     public Text TextScore;// Texto que concatenara las variable NombrePuntuacion y Puntuacion
     public Text TextProyectil;
@@ -32,13 +31,14 @@ public class GameController : MonoBehaviour
     {
         if (TextScore != null)
         {
-            TextScore.text = NombrePuntuacion+": " + Puntuacion;
+            TextScore.text = NombrePuntuacion + ": " + Puntuacion;
+
             
         }
 
         if (TextProyectil != null)
         {
-            TextProyectil.text = Nombre + ":   " + TipoProyectil;
+            TextProyectil.text = NombrePuntuacion+NombreProyectil + ":   " + TipoProyectil;
 
         }
 
