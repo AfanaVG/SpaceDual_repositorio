@@ -37,6 +37,11 @@ public class Worm : MonoBehaviour
         {
             Golpeado();
         }
+
+        if (collision.gameObject.tag == "Destructor")
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Golpeado()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8339001517818166269}
   - component: {fileID: 8339001517818166266}
   - component: {fileID: 8339001517818166267}
+  - component: {fileID: 5314915478730254228}
   m_Layer: 0
   m_Name: JumboAzul
   m_TagString: Enemigo
@@ -97,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -151,6 +152,27 @@ MonoBehaviour:
   balaL: {fileID: 190974312083082495, guid: c09a20b5913e843429fe3cf33ece7c66, type: 3}
   balaR: {fileID: 3954670104147912263, guid: 962e17db35f68bb449d988db18b78beb, type: 3}
   puntuacion: 500
+--- !u!50 &5314915478730254228
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339001517818166264}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &8339001517900131291
 GameObject:
   m_ObjectHideFlags: 0

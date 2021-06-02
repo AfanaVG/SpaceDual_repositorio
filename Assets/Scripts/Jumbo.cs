@@ -15,6 +15,7 @@ public class Jumbo : MonoBehaviour
     public GameObject balaR; //Objeto proyectil que usaremos para crear los proyectiles derechos
     private bool puedeDisparar = true; //Booleano para crear el espacio de tiempo entre disparos
     public int puntuacion=0; //Puntuacion que dara el enemigo al ser destruido
+    private bool disparoActivado = false;
 
 
     // Start is called before the first frame update
@@ -40,7 +41,7 @@ public class Jumbo : MonoBehaviour
 
     private void Disparo()
     {
-        if (puedeDisparar)//Disparara si a pasado el tiempo suficiente
+        if (puedeDisparar && disparoActivado)//Disparara si a pasado el tiempo suficiente
         {
             StartCoroutine("Disparar");
         }
@@ -61,6 +62,16 @@ public class Jumbo : MonoBehaviour
         if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
         {
             Golpeado();
+        }
+        if (collision.gameObject.tag == "Destructor")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Limite")
+        {
+            disparoActivado = true;
+
         }
     }
 

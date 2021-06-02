@@ -24,7 +24,7 @@ public class Bala : MonoBehaviour
         Movimiento(); // Metodo que controla la direccion de la bala dependiendo del valor de la variable direccion
 
 
-        Destroy(gameObject, 5f); //Despues de 5s la bala desaparecera para evitar sobrecargar el sistema
+        Destroy(gameObject, 20f); //Despues de 5s la bala desaparecera para evitar sobrecargar el sistema
     }
 
     private void Movimiento()

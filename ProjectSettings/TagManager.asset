@@ -9,6 +9,8 @@ TagManager:
   - Enemigo
   - Bala
   - Dual
+  - Limite
+  - Destructor
   layers:
   - Default
   - TransparentFX
