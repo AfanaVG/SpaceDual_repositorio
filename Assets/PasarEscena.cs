@@ -22,6 +22,6 @@ public class PasarEscena : MonoBehaviour
     public IEnumerator Esperar()
     {
         yield return new WaitForSeconds(9.5f);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Nivel1");
     }
 }
