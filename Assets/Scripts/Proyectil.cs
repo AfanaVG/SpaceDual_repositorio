@@ -6,6 +6,7 @@ public class Proyectil : MonoBehaviour
 {
     
     private float velocidad = 10f; //Velocidad del disparo
+    
     // Start is called before the first frame update
     void Start()
     {

@@ -6,6 +6,9 @@ public class DualController : MonoBehaviour
 {
     //Este objeto es la nave Dual que sera el jugador
 
+    public AudioClip[] disparos;
+    public AudioClip explosion;
+    private AudioClip disparoAnterior;
     public GameObject[] proyectiles; //Array de objetos proyectil que usaremos para generar los proyectiles
     public float velocidad = 5; //Velocidad de movimiento de la nave en todos los angulos
     private bool puedeDisparar = true; //Booleano para crear el espacio de tiempo entre disparos
@@ -35,6 +38,12 @@ public class DualController : MonoBehaviour
         puedeDisparar = true;
     }
 
+    IEnumerator EsperarExplosion()
+    {
+        yield return new WaitForSeconds(0.3f);
+        gameObject.GetComponent<AudioSource>().clip = disparoAnterior;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Si recibimos un golpe perdemos puntos
@@ -42,7 +51,15 @@ public class DualController : MonoBehaviour
         {
             GameController.Puntuacion += -restaPuntos;
             gameObject.GetComponent<Animator>().SetTrigger("Tocado");
+
+             disparoAnterior = gameObject.GetComponent<AudioSource>().clip;
+            gameObject.GetComponent<AudioSource>().clip = explosion;
+            gameObject.GetComponent<AudioSource>().Play();
+
+            StartCoroutine("EsperarExplosion");
             
+
+
         }
     }
 
@@ -50,6 +67,8 @@ public class DualController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && puedeDisparar)
         {
+            
+            gameObject.GetComponent<AudioSource>().Play();
             puedeDisparar = false;
             FirePoint.eulerAngles = new Vector3(0, 0, 0);
             Instantiate(proyectiles[proyectil_seleccionado], FirePoint.position, FirePoint.rotation);
@@ -71,10 +90,12 @@ public class DualController : MonoBehaviour
             if (proyectil_seleccionado == 1)
             {
                 GameController.TipoProyectil = "ROJO";
+                gameObject.GetComponent<AudioSource>().clip = disparos[1];
             }
             else
             {
                 GameController.TipoProyectil = "AZUL";
+                gameObject.GetComponent<AudioSource>().clip = disparos[0];
             }
 
         }

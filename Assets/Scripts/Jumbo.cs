@@ -16,6 +16,9 @@ public class Jumbo : MonoBehaviour
     private bool puedeDisparar = true; //Booleano para crear el espacio de tiempo entre disparos
     public int puntuacion=0; //Puntuacion que dara el enemigo al ser destruido
     private bool disparoActivado = false;
+    public AudioClip explosion;
+    public AudioClip impactoFallido;
+    public AudioClip disparo;
 
 
     // Start is called before the first frame update
@@ -59,12 +62,27 @@ public class Jumbo : MonoBehaviour
         {
             Golpeado();
         }
-        if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
+        else if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
         {
             Golpeado();
         }
+
+        if (collision.gameObject.tag == "ProyectilRojo" && !color.Equals("rojo"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = impactoFallido;
+            gameObject.GetComponent<AudioSource>().volume = 1f;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+        else if (collision.gameObject.tag == "ProyectilAzul" && !color.Equals("azul"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = impactoFallido;
+            gameObject.GetComponent<AudioSource>().volume = 1f;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+
         if (collision.gameObject.tag == "Destructor")
         {
+            
             Destroy(gameObject);
         }
 
@@ -79,6 +97,9 @@ public class Jumbo : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetTrigger("Tocado");
         GameController.Puntuacion += puntuacion;
+        gameObject.GetComponent<AudioSource>().clip = explosion;
+        gameObject.GetComponent<AudioSource>().volume = 1.0f;
+        gameObject.GetComponent<AudioSource>().Play();
         Destroy(gameObject, 0.2f);
     }
 
@@ -86,6 +107,9 @@ public class Jumbo : MonoBehaviour
     {
         puedeDisparar = false;
         yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<AudioSource>().clip = disparo;
+        gameObject.GetComponent<AudioSource>().volume = 0.2f;
+        gameObject.GetComponent<AudioSource>().Play();
 
         FirePointL.eulerAngles = new Vector3(0, 0, 0);
         Instantiate(balaL, FirePointL.position, FirePointL.rotation);

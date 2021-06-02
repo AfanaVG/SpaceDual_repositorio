@@ -13,6 +13,8 @@ public class Stand : MonoBehaviour
     private Vector3 posicionInicial; //La posicion inicial de la nave
     private int paso = 1; // Variable para controlar el orden del movimiento lateral
     public int puntuacion = 0; //Puntuacion que dara el enemigo al ser destruido
+    public AudioClip explosion;
+    public AudioClip impactoFallido;
 
     // Start is called before the first frame update
     void Start()
@@ -66,12 +68,27 @@ public class Stand : MonoBehaviour
         {
             Golpeado();
         }
-        if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
+        else if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
         {
             Golpeado();
         }
+
+        if (collision.gameObject.tag == "ProyectilRojo" && !color.Equals("rojo"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = impactoFallido;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+        else if (collision.gameObject.tag == "ProyectilAzul" && !color.Equals("azul"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = impactoFallido;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+
+
+
         if (collision.gameObject.tag == "Destructor")
         {
+
             Destroy(gameObject);
         }
     }
@@ -80,6 +97,8 @@ public class Stand : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetTrigger("Tocado");
         GameController.Puntuacion += puntuacion;
+        gameObject.GetComponent<AudioSource>().clip = explosion;
+        gameObject.GetComponent<AudioSource>().Play();
         Destroy(gameObject, 0.2f);
     }
 }

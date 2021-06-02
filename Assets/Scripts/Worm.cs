@@ -9,6 +9,8 @@ public class Worm : MonoBehaviour
     public string color = ""; //Indica el color del enemigo; Valores aceptado : rojo | azul
     public float velocidad = 1f; //Velocidad de la nave
     public int puntuacion = 0; //Puntuacion que dara el enemigo al ser destruido
+    public AudioClip explosion;
+    public AudioClip impactoFallido;
 
     // Start is called before the first frame update
     void Start()
@@ -32,14 +34,25 @@ public class Worm : MonoBehaviour
         if (collision.gameObject.tag == "ProyectilRojo" && color.Equals("rojo"))
         {
             Golpeado();
-        }
-        if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
+        }else if (collision.gameObject.tag == "ProyectilAzul" && color.Equals("azul"))
         {
             Golpeado();
         }
 
+        if (collision.gameObject.tag == "ProyectilRojo" && !color.Equals("rojo"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = impactoFallido;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+        else if (collision.gameObject.tag == "ProyectilAzul" && !color.Equals("azul"))
+        {
+            gameObject.GetComponent<AudioSource>().clip = impactoFallido;
+            gameObject.GetComponent<AudioSource>().Play();
+        }
+
         if (collision.gameObject.tag == "Destructor")
         {
+            
             Destroy(gameObject);
         }
     }
@@ -48,6 +61,8 @@ public class Worm : MonoBehaviour
     {
         gameObject.GetComponent<Animator>().SetTrigger("Tocado");
         GameController.Puntuacion += puntuacion;
+        gameObject.GetComponent<AudioSource>().clip = explosion;
+        gameObject.GetComponent<AudioSource>().Play();
         Destroy(gameObject, 0.2f);
     }
 }
