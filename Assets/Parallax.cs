@@ -8,6 +8,7 @@ public class Parallax : MonoBehaviour
     public GameObject fondo;
     public float velocidad;
     public float tamano;
+    public float inicioBucle;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,9 @@ public class Parallax : MonoBehaviour
 
         if (Math.Abs(fondo.transform.localPosition.y) > tamano)
         {
-            fondo.transform.localPosition = new Vector3(0.0f, 90.2f, fondo.transform.position.z);
+            //fondo.transform.localPosition = new Vector3(0.0f, 90.2f, fondo.transform.position.z);
+
+            fondo.transform.localPosition = new Vector3(0.0f, inicioBucle, fondo.transform.position.z);
         }
         else
         {

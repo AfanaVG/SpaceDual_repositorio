@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\Limites.cs" />
+    <Compile Include="Assets\Meta.cs" />
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\PasarEscena.cs" />
     <Compile Include="Assets\Scripts\Bala.cs" />

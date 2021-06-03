@@ -145,10 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: azul
-  velocidad: 1
+  velocidad: 2
   v_lateral: 5
   dist_lateral: 3
-  puntuacion: 0
+  puntuacion: 300
   explosion: {fileID: 8300000, guid: 33d402f93c841144c97c4d8b335b7588, type: 3}
   impactoFallido: {fileID: 8300000, guid: aa7cc7c51e676304990f70741bce46bd, type: 3}
 --- !u!50 &7555501143733811776
@@ -184,7 +184,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.486
   m_Pitch: 1
   Loop: 0
   Mute: 0

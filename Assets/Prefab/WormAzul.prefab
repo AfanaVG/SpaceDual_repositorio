@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 246170266845623982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.13806957, y: 3.789351, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: azul
-  velocidad: 1
-  puntuacion: 58
+  velocidad: 2
+  puntuacion: 100
   explosion: {fileID: 8300000, guid: 33d402f93c841144c97c4d8b335b7588, type: 3}
   impactoFallido: {fileID: 8300000, guid: aa7cc7c51e676304990f70741bce46bd, type: 3}
 --- !u!50 &5369220079733513246

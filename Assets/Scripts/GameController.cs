@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         gameController = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update

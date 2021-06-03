@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DualController : MonoBehaviour
 {
@@ -15,18 +16,26 @@ public class DualController : MonoBehaviour
     public Transform FirePoint; //Posicion de la fuente de disparo
     private int proyectil_seleccionado =0; //Indica que proyectil esta listo para ser disparado
     public int restaPuntos = 0; //Cantidad de puntos que se pierden al recibir un impacto
+    private static GameObject dual;
+    private static DualController dualScript;
+
+
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        dual = FindObjectOfType<DualController>().gameObject;
+        dualScript = FindObjectOfType<DualController>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Movimiento(); //Controlara el movimiento de la nave
-        Disparo(); //Maneja tanto el disparo como el sistema de seleccion de balas
+        ControlProyectiles(); //Maneja tanto el disparo como el sistema de seleccion de balas
 
         
     }
@@ -35,13 +44,13 @@ public class DualController : MonoBehaviour
     IEnumerator Esperar()
     {
         yield return new WaitForSeconds(0.3f);
-        puedeDisparar = true;
+        dualScript.puedeDisparar = true;
     }
 
     IEnumerator EsperarExplosion()
     {
-        yield return new WaitForSeconds(0.3f);
-        gameObject.GetComponent<AudioSource>().clip = disparoAnterior;
+        yield return new WaitForSeconds(0.1f);
+        dual.GetComponent<AudioSource>().clip = dualScript.disparoAnterior;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,81 +58,123 @@ public class DualController : MonoBehaviour
         //Si recibimos un golpe perdemos puntos
         if (collision.gameObject.tag.Equals("Enemigo") || collision.gameObject.tag.Equals("Bala"))
         {
-            GameController.Puntuacion += -restaPuntos;
-            gameObject.GetComponent<Animator>().SetTrigger("Tocado");
+            GameController.Puntuacion += dualScript.restaPuntos;
+            dual.GetComponent<Animator>().SetTrigger("Tocado");
 
-             disparoAnterior = gameObject.GetComponent<AudioSource>().clip;
-            gameObject.GetComponent<AudioSource>().clip = explosion;
-            gameObject.GetComponent<AudioSource>().Play();
-
+            disparoAnterior = dual.GetComponent<AudioSource>().clip;
+            dual.GetComponent<AudioSource>().clip = dualScript.explosion;
+            dual.GetComponent<AudioSource>().Play();
+            
             StartCoroutine("EsperarExplosion");
             
 
 
         }
+
+        if (collision.gameObject.tag.Equals("Final"))
+        {
+            SceneManager.LoadScene("Cortinilla");
+        }
     }
 
-    private void Disparo()
+    private void ControlProyectiles()
     {
-        if (Input.GetKey(KeyCode.Space) && puedeDisparar)
+        if (Input.GetKey(KeyCode.Space) && dualScript.puedeDisparar)
         {
-            
-            gameObject.GetComponent<AudioSource>().Play();
-            puedeDisparar = false;
-            FirePoint.eulerAngles = new Vector3(0, 0, 0);
-            Instantiate(proyectiles[proyectil_seleccionado], FirePoint.position, FirePoint.rotation);
-            StartCoroutine("Esperar");
+
+            Disparo();
         }
        
 
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            
-            if (proyectil_seleccionado != proyectiles.Length - 1)
-            {
-                proyectil_seleccionado++;
-            }
-            else
-            {
-                proyectil_seleccionado = 0;
-            }
-            if (proyectil_seleccionado == 1)
-            {
-                GameController.TipoProyectil = "ROJO";
-                gameObject.GetComponent<AudioSource>().clip = disparos[1];
-            }
-            else
-            {
-                GameController.TipoProyectil = "AZUL";
-                gameObject.GetComponent<AudioSource>().clip = disparos[0];
-            }
+
+            CambiarProyectil();
 
         }
 
+    }
+
+    public void Disparo()
+    {
+        dual.GetComponent<AudioSource>().Play();
+        dualScript.puedeDisparar = false;
+        dualScript.FirePoint.eulerAngles = new Vector3(0, 0, 0);
+        Instantiate(dualScript.proyectiles[dualScript.proyectil_seleccionado], dualScript.FirePoint.position, dualScript.FirePoint.rotation);
+        dualScript.StartCoroutine("Esperar");
+        //StartCoroutine("Esperar");
+    }
+
+    public void CambiarProyectil()
+    {
+        Debug.Log(dualScript.proyectil_seleccionado);
+
+        if (dualScript.proyectil_seleccionado != dualScript.proyectiles.Length - 1)
+        {
+            dualScript.proyectil_seleccionado++;
+            
+        }
+        else
+        {
+            dualScript.proyectil_seleccionado = 0;
+        }
+
+        if (dualScript.proyectil_seleccionado == 1)
+        {
+            GameController.TipoProyectil = "ROJO";
+            dual.GetComponent<AudioSource>().clip = dualScript.disparos[1];
+        }
+        else
+        {
+            GameController.TipoProyectil = "AZUL";
+            dual.GetComponent<AudioSource>().clip = dualScript.disparos[0];
+        }
     }
 
     private void Movimiento()
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            gameObject.transform.Translate(-velocidad * Time.deltaTime, 0, 0);
+            MovIzquierda();
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            gameObject.transform.Translate(velocidad * Time.deltaTime, 0, 0);
+            MovDerecha();
         }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            gameObject.transform.Translate(0, velocidad * Time.deltaTime, 0);
+            MovArriba();
         }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            gameObject.transform.Translate(0, -velocidad * Time.deltaTime, 0);
+            MovAbajo();
         }
 
+    }
+
+    public void MovDerecha()
+    {
+        dual.transform.Translate(velocidad * Time.deltaTime, 0, 0);
+    }
+
+    public void MovIzquierda()
+    {
+        dual.transform.Translate(-velocidad * Time.deltaTime, 0, 0);
+    }
+
+    public void MovArriba()
+    {
+        Debug.Log("Hello World");
+        dual.transform.Translate(0, velocidad * Time.deltaTime, 0);
+        //transform.Translate(0, velocidad * Time.deltaTime, 0);
+    }
+
+    public void MovAbajo()
+    {
+        dual.transform.Translate(0, -velocidad * Time.deltaTime, 0);
     }
 
 }

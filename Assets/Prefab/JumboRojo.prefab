@@ -179,10 +179,10 @@ MonoBehaviour:
   color: rojo
   FirePointL: {fileID: 4703984657802315142}
   FirePointR: {fileID: 4703984657344395963}
-  velocidad: 1
+  velocidad: 2
   balaL: {fileID: 190974312083082495, guid: c09a20b5913e843429fe3cf33ece7c66, type: 3}
   balaR: {fileID: 3954670104147912263, guid: 962e17db35f68bb449d988db18b78beb, type: 3}
-  puntuacion: 500
+  puntuacion: 50
   explosion: {fileID: 8300000, guid: 33d402f93c841144c97c4d8b335b7588, type: 3}
   impactoFallido: {fileID: 8300000, guid: aa7cc7c51e676304990f70741bce46bd, type: 3}
   disparo: {fileID: 8300000, guid: 40dad15e2055adc4faa07a61dd9cc63e, type: 3}
