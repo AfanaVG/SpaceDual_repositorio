@@ -32,18 +32,21 @@ public class GameController : MonoBehaviour
     {
         if (TextScore != null)
         {
+
             TextScore.text = NombrePuntuacion + ": " + Puntuacion;
-
-            
-        }
-
-        if (TextProyectil != null)
-        {
-            TextProyectil.text = NombrePuntuacion+NombreProyectil + ":   " + TipoProyectil;
 
         }
 
         
+
+        if (TextProyectil != null)
+        {
+
+            TextProyectil.text = NombrePuntuacion + ":   " + TipoProyectil;
+        }
+        
+
+
 
     }
 }

@@ -17,7 +17,7 @@ public class DualController : MonoBehaviour
     private int proyectil_seleccionado =0; //Indica que proyectil esta listo para ser disparado
     public int restaPuntos = 0; //Cantidad de puntos que se pierden al recibir un impacto
     private static GameObject dual;
-    private static DualController dualScript;
+    public static DualController dualScript;
 
 
 
@@ -26,6 +26,7 @@ public class DualController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         dual = FindObjectOfType<DualController>().gameObject;
         dualScript = FindObjectOfType<DualController>();
 
@@ -58,7 +59,7 @@ public class DualController : MonoBehaviour
         //Si recibimos un golpe perdemos puntos
         if (collision.gameObject.tag.Equals("Enemigo") || collision.gameObject.tag.Equals("Bala"))
         {
-            GameController.Puntuacion += dualScript.restaPuntos;
+            GameController.Puntuacion -= dualScript.restaPuntos;
             dual.GetComponent<Animator>().SetTrigger("Tocado");
 
             disparoAnterior = dual.GetComponent<AudioSource>().clip;
@@ -174,7 +175,11 @@ public class DualController : MonoBehaviour
 
     public void MovAbajo()
     {
+        
         dual.transform.Translate(0, -velocidad * Time.deltaTime, 0);
     }
+
+
+    
 
 }

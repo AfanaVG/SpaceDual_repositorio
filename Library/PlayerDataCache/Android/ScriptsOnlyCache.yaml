@@ -274,6 +274,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11902}
     - Class: 114
+      Script: {instanceID: 12278}
+    - Class: 114
       Script: {instanceID: 12348}
     - Class: 114
       Script: {instanceID: 12428}
@@ -295,6 +297,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14140}
     - Class: 114
       Script: {instanceID: 14308}
+    - Class: 114
+      Script: {instanceID: 14376}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -355,6 +359,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11902}
     - Class: 114
+      Script: {instanceID: 12278}
+    - Class: 114
       Script: {instanceID: 12348}
     - Class: 114
       Script: {instanceID: 12428}
@@ -376,6 +382,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14140}
     - Class: 114
       Script: {instanceID: 14308}
+    - Class: 114
+      Script: {instanceID: 14376}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -960,4 +968,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Cortinilla.unity
   - Assets/Scenes/Nivel2.unity
   - Assets/Scenes/Nivel3.unity
-  playerPath: C:/Users/Afana/Desktop/pruebaDeSpaceDual.apk
+  playerPath: C:/Users/dam201/Desktop/space.apk
