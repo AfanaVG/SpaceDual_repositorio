@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ProyectilAzul
+  - ProyectilRojo
+  - Enemigo
+  - Bala
+  - Dual
+  - Limite
+  - Destructor
+  - Final
   layers:
   - Default
   - TransparentFX
@@ -38,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fondo
+    uniqueID: 2952722105
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
