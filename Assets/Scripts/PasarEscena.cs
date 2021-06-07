@@ -22,7 +22,16 @@ public class PasarEscena : MonoBehaviour
     void Start()
     {
         nivel++;
-        TextNombre.text = "NIVEL  -  " + nivel;
+        if (nivel!=4)
+        {
+            
+            TextNombre.text = "NIVEL  -  " + nivel;
+        }
+        else {
+            TextNombre.text = "JUEGO COMPLETADO";
+        }
+        
+        
 
 
         
@@ -52,7 +61,11 @@ public class PasarEscena : MonoBehaviour
         else if (nivel == 3)
         {
             SceneManager.LoadScene("Nivel1");
+        } else if (nivel == 4)
+        {
+            SceneManager.LoadScene("Creditos");
         }
+        
 
     }
 }

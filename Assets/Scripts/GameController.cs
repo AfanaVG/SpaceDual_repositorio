@@ -42,7 +42,8 @@ public class GameController : MonoBehaviour
         if (TextProyectil != null)
         {
 
-            TextProyectil.text = NombrePuntuacion + ":   " + TipoProyectil;
+            // TextProyectil.text = NombrePuntuacion + ":   " + TipoProyectil;
+            TextProyectil.text = "Proyectil :   " + TipoProyectil;
         }
         
 

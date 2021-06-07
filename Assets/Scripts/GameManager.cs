@@ -30,6 +30,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine("Esperar");
     }
 
+    public void VerCreditos()
+    {
+        SceneManager.LoadScene("Creditos");
+    }
+
+
+
     public void Controles()
     {
         inicio.enabled = false;
@@ -42,10 +49,7 @@ public class GameManager : MonoBehaviour
         controles.enabled = false;
     }
 
-    public void Creditos()
-    {
 
-    }
 
     public IEnumerator Esperar()
     {
